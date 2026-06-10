@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Support Ticketing Dashboard — Yash Somaiya</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #1a1a1a; padding: 24px; }
+  h1 { font-size: 22px; font-weight: 600; color: #1a1a1a; }
+  .subtitle { font-size: 13px; color: #666; margin-top: 4px; margin-bottom: 20px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+  .kpi { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 16px; }
+  .kpi-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+  .kpi-value { font-size: 26px; font-weight: 600; }
+  .kpi-sub { font-size: 11px; margin-top: 4px; color: #888; }
+  .green { color: #2d6a2d; }
+  .red { color: #a32d2d; }
+  .amber { color: #7a4f00; }
+  .blue { color: #185fa5; }
+  .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .card { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 16px; }
+  .card-title { font-size: 13px; font-weight: 600; color: #555; margin-bottom: 12px; }
+  .agent-wrap { margin-bottom: 10px; }
+  .agent-name { font-size: 13px; display: flex; justify-content: space-between; margin-bottom: 4px; }
+  .agent-track { background: #f0f0f0; border-radius: 4px; height: 8px; }
+  .agent-fill { height: 8px; border-radius: 4px; background: #378ADD; }
+  .filter-row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+  .filter-row select { font-size: 12px; padding: 6px 10px; border-radius: 6px; border: 1px solid #ddd; background: #fff; color: #1a1a1a; cursor: pointer; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; padding: 8px 10px; font-size: 11px; font-weight: 600; color: #666; background: #f9f9f9; border-bottom: 1px solid #eee; }
+  td { padding: 8px 10px; border-bottom: 1px solid #f0f0f0; color: #1a1a1a; }
+  tr:hover td { background: #fafafa; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; }
+  .p1 { background: #FCEBEB; color: #A32D2D; }
+  .p2 { background: #FAEEDA; color: #7a4f00; }
+  .p3 { background: #E6F1FB; color: #0C447C; }
+  .p4 { background: #EAF3DE; color: #27500A; }
+  .s-open { background: #FAEEDA; color: #7a4f00; }
+  .s-inprog { background: #E6F1FB; color: #0C447C; }
+  .s-resolved { background: #EAF3DE; color: #27500A; }
+  .s-closed { background: #f0f0f0; color: #444; }
+  .s-pending { background: #FCEBEB; color: #A32D2D; }
+  .sla-yes { color: #27500A; font-weight: 600; }
+  .sla-no { color: #A32D2D; font-weight: 600; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 10px; font-size: 11px; color: #666; }
+  .legend span { display: flex; align-items: center; gap: 4px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .table-count { font-size: 11px; color: #999; margin-top: 8px; }
+  .ticket-id { font-family: monospace; font-size: 11px; color: #888; }
+  @media (max-width: 600px) {
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .charts-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<h1>IT Support Ticketing Dashboard</h1>
+<p class="subtitle">Author: Yash Somaiya &nbsp;|&nbsp; Tools: Python · ServiceNow · Excel · Azure AD &nbsp;|&nbsp; Data: Last 30 days &nbsp;|&nbsp; <a href="https://github.com/YashSomaiya7/it-support-dashboard" target="_blank" style="color:#185fa5">View on GitHub</a></p>
+
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="kpi-label">Total tickets</div>
+    <div class="kpi-value">50</div>
+    <div class="kpi-sub">Last 30 days</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Resolution rate</div>
+    <div class="kpi-value green">64%</div>
+    <div class="kpi-sub green">32 resolved or closed</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">SLA compliance</div>
+    <div class="kpi-value red">9%</div>
+    <div class="kpi-sub red">Needs improvement</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Open tickets</div>
+    <div class="kpi-value amber">5</div>
+    <div class="kpi-sub">Awaiting resolution</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Avg resolution time</div>
+    <div class="kpi-value">54h</div>
+    <div class="kpi-sub">Across all priorities</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">In progress</div>
+    <div class="kpi-value blue">12</div>
+    <div class="kpi-sub">Being worked on now</div>
+  </div>
+</div>
+
+<div class="charts-row">
+  <div class="card">
+    <div class="card-title">Tickets by category</div>
+    <div style="position:relative;height:200px">
+      <canvas id="catChart" role="img" aria-label="Bar chart of tickets by category"></canvas>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Status breakdown</div>
+    <div class="legend">
+      <span><span class="legend-dot" style="background:#BA7517"></span>Open</span>
+      <span><span class="legend-dot" style="background:#185FA5"></span>In Progress</span>
+      <span><span class="legend-dot" style="background:#3B6D11"></span>Resolved</span>
+      <span><span class="legend-dot" style="background:#888"></span>Closed</span>
+      <span><span class="legend-dot" style="background:#A32D2D"></span>Pending</span>
+    </div>
+    <div style="position:relative;height:165px">
+      <canvas id="statusChart" role="img" aria-label="Doughnut chart showing ticket status split"></canvas>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:20px">
+  <div class="card-title">Agent performance — tickets handled</div>
+  <div id="agentBars"></div>
+</div>
+
+<div class="card">
+  <div class="card-title">Live ticket feed</div>
+  <div class="filter-row">
+    <select id="fPriority" onchange="renderTable()">
+      <option value="">All priorities</option>
+      <option>P1 - Critical</option>
+      <option>P2 - High</option>
+      <option>P3 - Medium</option>
+      <option>P4 - Low</option>
+    </select>
+    <select id="fStatus" onchange="renderTable()">
+      <option value="">All statuses</option>
+      <option>Open</option>
+      <option>In Progress</option>
+      <option>Resolved</option>
+      <option>Closed</option>
+      <option>Pending User</option>
+    </select>
+    <select id="fCategory" onchange="renderTable()">
+      <option value="">All categories</option>
+      <option>Hardware</option>
+      <option>Software</option>
+      <option>Network</option>
+      <option>Access/Permissions</option>
+      <option>Email</option>
+      <option>Printer</option>
+      <option>VPN</option>
+      <option>Other</option>
+    </select>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Ticket ID</th>
+        <th>Issue</th>
+        <th>Category</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Agent</th>
+        <th>SLA met</th>
+      </tr>
+    </thead>
+    <tbody id="ticketBody"></tbody>
+  </table>
+  <div class="table-count" id="tableCount"></div>
+</div>
+
+<script>
+const tickets = [
+  {id:"INC00001",issue:"Unable to connect to VPN",cat:"VPN",pri:"P2 - High",status:"Open",agent:"Alex Chen",sla:"N/A"},
+  {id:"INC00002",issue:"Spam filter blocking emails",cat:"Email",pri:"P4 - Low",status:"Resolved",agent:"Maria Lopez",sla:"No"},
+  {id:"INC00003",issue:"Cannot access shared drive",cat:"Access/Permissions",pri:"P3 - Medium",status:"Closed",agent:"Yash Somaiya",sla:"No"},
+  {id:"INC00004",issue:"Remote access denied",cat:"VPN",pri:"P2 - High",status:"Resolved",agent:"Maria Lopez",sla:"No"},
+  {id:"INC00005",issue:"Keyboard unresponsive",cat:"Hardware",pri:"P1 - Critical",status:"Resolved",agent:"Priya Patel",sla:"No"},
+  {id:"INC00006",issue:"Application crashing on launch",cat:"Software",pri:"P3 - Medium",status:"Closed",agent:"Alex Chen",sla:"Yes"},
+  {id:"INC00007",issue:"New user account setup",cat:"Access/Permissions",pri:"P3 - Medium",status:"In Progress",agent:"Yash Somaiya",sla:"N/A"},
+  {id:"INC00008",issue:"Laptop not turning on",cat:"Hardware",pri:"P2 - High",status:"Closed",agent:"Jordan Smith",sla:"Yes"},
+  {id:"INC00009",issue:"VPN connection timeout",cat:"VPN",pri:"P3 - Medium",status:"In Progress",agent:"Alex Chen",sla:"N/A"},
+  {id:"INC00010",issue:"Outlook not syncing",cat:"Email",pri:"P4 - Low",status:"Resolved",agent:"Priya Patel",sla:"No"},
+  {id:"INC00011",issue:"Printer offline",cat:"Printer",pri:"P3 - Medium",status:"Open",agent:"Maria Lopez",sla:"N/A"},
+  {id:"INC00012",issue:"Password reset required",cat:"Access/Permissions",pri:"P2 - High",status:"Closed",agent:"Yash Somaiya",sla:"Yes"},
+  {id:"INC00013",issue:"No internet connection",cat:"Network",pri:"P1 - Critical",status:"Resolved",agent:"Alex Chen",sla:"No"},
+  {id:"INC00014",issue:"Software license expired",cat:"Software",pri:"P3 - Medium",status:"In Progress",agent:"Jordan Smith",sla:"N/A"},
+  {id:"INC00015",issue:"WiFi dropping",cat:"Network",pri:"P4 - Low",status:"Closed",agent:"Priya Patel",sla:"No"},
+  {id:"INC00016",issue:"MFA not working",cat:"Access/Permissions",pri:"P2 - High",status:"Open",agent:"Maria Lopez",sla:"N/A"},
+  {id:"INC00017",issue:"Print job stuck in queue",cat:"Printer",pri:"P4 - Low",status:"Resolved",agent:"Yash Somaiya",sla:"No"},
+  {id:"INC00018",issue:"Two-factor auth failure",cat:"VPN",pri:"P1 - Critical",status:"Closed",agent:"Alex Chen",sla:"Yes"},
+  {id:"INC00019",issue:"Monitor flickering",cat:"Hardware",pri:"P3 - Medium",status:"In Progress",agent:"Jordan Smith",sla:"N/A"},
+  {id:"INC00020",issue:"Cannot send attachments",cat:"Email",pri:"P4 - Low",status:"Resolved",agent:"Priya Patel",sla:"No"},
+  {id:"INC00021",issue:"Slow network performance",cat:"Network",pri:"P3 - Medium",status:"Closed",agent:"Alex Chen",sla:"Yes"},
+  {id:"INC00022",issue:"Unable to install update",cat:"Software",pri:"P4 - Low",status:"Resolved",agent:"Maria Lopez",sla:"No"},
+  {id:"INC00023",issue:"Docking station issue",cat:"Hardware",pri:"P3 - Medium",status:"In Progress",agent:"Yash Somaiya",sla:"N/A"},
+  {id:"INC00024",issue:"Email account locked",cat:"Email",pri:"P2 - High",status:"Open",agent:"Priya Patel",sla:"N/A"},
+  {id:"INC00025",issue:"VPN client not installing",cat:"VPN",pri:"P3 - Medium",status:"Resolved",agent:"Jordan Smith",sla:"No"},
+  {id:"INC00026",issue:"Unable to find printer on network",cat:"Printer",pri:"P4 - Low",status:"Closed",agent:"Alex Chen",sla:"No"},
+  {id:"INC00027",issue:"General IT inquiry",cat:"Other",pri:"P4 - Low",status:"Resolved",agent:"Maria Lopez",sla:"Yes"},
+  {id:"INC00028",issue:"MFA not working",cat:"Access/Permissions",pri:"P2 - High",status:"In Progress",agent:"Yash Somaiya",sla:"N/A"},
+  {id:"INC00029",issue:"WiFi dropping repeatedly",cat:"Network",pri:"P3 - Medium",status:"Closed",agent:"Priya Patel",sla:"No"},
+  {id:"INC00030",issue:"IT policy clarification",cat:"Other",pri:"P4 - Low",status:"Resolved",agent:"Jordan Smith",sla:"Yes"},
+];
+
+function priClass(p){
+  if(p.includes("P1"))return"p1";
+  if(p.includes("P2"))return"p2";
+  if(p.includes("P3"))return"p3";
+  return"p4";
+}
+function statusClass(s){
+  if(s==="Open")return"s-open";
+  if(s==="In Progress")return"s-inprog";
+  if(s==="Resolved")return"s-resolved";
+  if(s==="Closed")return"s-closed";
+  return"s-pending";
+}
+
+function renderTable(){
+  const fp = document.getElementById("fPriority").value;
+  const fs = document.getElementById("fStatus").value;
+  const fc = document.getElementById("fCategory").value;
+  const filtered = tickets.filter(t =>
+    (!fp || t.pri === fp) &&
+    (!fs || t.status === fs) &&
+    (!fc || t.cat === fc)
+  );
+  document.getElementById("ticketBody").innerHTML = filtered.map(t => `
+    <tr>
+      <td class="ticket-id">${t.id}</td>
+      <td>${t.issue}</td>
+      <td>${t.cat}</td>
+      <td><span class="badge ${priClass(t.pri)}">${t.pri}</span></td>
+      <td><span class="badge ${statusClass(t.status)}">${t.status}</span></td>
+      <td>${t.agent}</td>
+      <td class="${t.sla==="Yes"?"sla-yes":t.sla==="No"?"sla-no":""}">${t.sla}</td>
+    </tr>
+  `).join("");
+  document.getElementById("tableCount").textContent = `Showing ${filtered.length} of ${tickets.length} tickets`;
+}
+renderTable();
+
+const agents = {"Alex Chen":13,"Maria Lopez":12,"Yash Somaiya":10,"Priya Patel":9,"Jordan Smith":6};
+const maxA = 13;
+document.getElementById("agentBars").innerHTML = Object.entries(agents).map(([name,count]) => `
+  <div class="agent-wrap">
+    <div class="agent-name"><span>${name}</span><span style="color:#999">${count} tickets</span></div>
+    <div class="agent-track"><div class="agent-fill" style="width:${Math.round(count/maxA*100)}%"></div></div>
+  </div>
+`).join("");
+
+new Chart(document.getElementById("catChart"),{
+  type:"bar",
+  data:{
+    labels:["Network","Access","Other","VPN","Hardware","Email","Printer","Software"],
+    datasets:[{label:"Tickets",data:[10,8,8,7,6,5,3,3],backgroundColor:"#378ADD",borderRadius:4,borderSkipped:false}]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{
+      y:{grid:{color:"rgba(0,0,0,0.05)"},ticks:{font:{size:11}}},
+      x:{grid:{display:false},ticks:{font:{size:10}}}
+    }
+  }
+});
+
+new Chart(document.getElementById("statusChart"),{
+  type:"doughnut",
+  data:{
+    labels:["Open","In Progress","Resolved","Closed","Pending"],
+    datasets:[{
+      data:[5,12,15,17,1],
+      backgroundColor:["#BA7517","#185FA5","#3B6D11","#888","#A32D2D"],
+      borderWidth:0,hoverOffset:4
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,cutout:"65%",
+    plugins:{legend:{display:false}}
+  }
+});
+</script>
+</body>
+</html>
