@@ -1,0 +1,46 @@
+{
+  "total_tickets": 50,
+  "open_tickets": 3,
+  "resolved_tickets": 35,
+  "resolution_rate_pct": 70.0,
+  "sla_compliance_pct": 37.1,
+  "avg_resolution_hrs": 38.0,
+  "by_category": {
+    "Other": 10,
+    "VPN": 8,
+    "Access/Permissions": 8,
+    "Network": 7,
+    "Email": 7,
+    "Hardware": 4,
+    "Software": 3,
+    "Printer": 3
+  },
+  "by_priority": {
+    "P3 - Medium": 34,
+    "P4 - Low": 9,
+    "P2 - High": 7
+  },
+  "by_agent": {
+    "Maria Lopez": 14,
+    "Jordan Smith": 11,
+    "Priya Patel": 11,
+    "Alex Chen": 10,
+    "Yash Somaiya": 4
+  },
+  "by_department": {
+    "Legal": 10,
+    "Marketing": 10,
+    "HR": 9,
+    "Facilities": 6,
+    "IT": 6,
+    "Finance": 5,
+    "Operations": 4
+  },
+  "by_status": {
+    "Resolved": 21,
+    "Closed": 14,
+    "In Progress": 10,
+    "Pending User": 2,
+    "Open": 3
+  }
+}

@@ -1,0 +1,51 @@
+ticket_id,created_at,resolved_at,category,priority,status,issue,department,assigned_agent,resolution_time_hrs,met_sla,resolution_note,satisfaction_score
+INC00001,2026-06-04 03:52,2026-06-05 02:26,Software,P3 - Medium,Resolved,Software license expired,HR,Maria Lopez,22.6,Yes,Reinstalled application and applied latest patch.,4
+INC00002,2026-06-07 10:20,2026-06-08 20:57,VPN,P3 - Medium,Closed,VPN client not installing,Legal,Alex Chen,34.6,No,Updated VPN client. Verified user profile in Azure AD.,5
+INC00003,2026-05-29 11:53,2026-05-31 04:45,Other,P3 - Medium,Resolved,Data backup question,Marketing,Jordan Smith,40.9,No,Provided documentation and guidance. Closed after user confirmation.,5
+INC00004,2026-06-03 10:50,,Other,P3 - Medium,In Progress,Data backup question,Operations,Priya Patel,,N/A,,
+INC00005,2026-05-31 13:30,,Software,P4 - Low,Pending User,Unable to install update,Legal,Jordan Smith,,N/A,,
+INC00006,2026-06-02 15:29,2026-06-03 22:27,Other,P3 - Medium,Resolved,IT policy clarification,Legal,Maria Lopez,31.0,No,Provided documentation and guidance. Closed after user confirmation.,3
+INC00007,2026-05-31 13:21,2026-06-02 19:17,Software,P4 - Low,Resolved,Application crashing on launch,Legal,Jordan Smith,53.9,Yes,Reinstalled application and applied latest patch.,3
+INC00008,2026-05-29 01:25,,Access/Permissions,P3 - Medium,In Progress,New user account setup,HR,Maria Lopez,,N/A,,
+INC00009,2026-05-27 19:45,2026-06-01 01:33,Hardware,P4 - Low,Closed,Docking station issue,HR,Alex Chen,101.8,No,Dispatched technician. Hardware replaced/repaired.,3
+INC00010,2026-05-27 21:40,2026-05-28 03:00,Other,P2 - High,Resolved,Software recommendation request,Facilities,Priya Patel,5.3,Yes,Provided documentation and guidance. Closed after user confirmation.,5
+INC00011,2026-06-05 12:33,2026-06-06 10:56,Network,P3 - Medium,Resolved,Unable to connect to VPN,Marketing,Priya Patel,22.4,Yes,Reset network adapter. Escalated to network team if persistent.,3
+INC00012,2026-06-01 11:52,,Network,P4 - Low,In Progress,No internet connection,Operations,Maria Lopez,,N/A,,
+INC00013,2026-05-16 07:20,2026-05-18 12:50,Email,P3 - Medium,Closed,Outlook not syncing,Finance,Maria Lopez,53.5,No,Reconfigured Outlook profile. Cleared cache.,3
+INC00014,2026-05-19 06:37,,Email,P3 - Medium,In Progress,Spam filter blocking emails,Facilities,Jordan Smith,,N/A,,
+INC00015,2026-05-15 15:30,2026-05-16 17:25,Access/Permissions,P3 - Medium,Resolved,Cannot access shared drive,Marketing,Maria Lopez,25.9,No,Reset credentials via Active Directory. Verified MFA enrollment.,5
+INC00016,2026-05-11 20:29,2026-05-13 20:08,Other,P3 - Medium,Closed,IT policy clarification,Finance,Priya Patel,47.6,No,Provided documentation and guidance. Closed after user confirmation.,3
+INC00017,2026-05-26 00:30,,Other,P4 - Low,Open,Software recommendation request,Legal,Alex Chen,,N/A,,
+INC00018,2026-05-20 18:22,2026-05-22 10:26,Network,P4 - Low,Closed,WiFi dropping,Operations,Maria Lopez,40.1,Yes,Reset network adapter. Escalated to network team if persistent.,3
+INC00019,2026-05-20 18:27,2026-05-22 13:36,Printer,P3 - Medium,Resolved,Paper jam error,Finance,Alex Chen,43.2,No,Cleared print queue. Reconnected printer via IP address.,4
+INC00020,2026-05-13 06:26,,Network,P2 - High,In Progress,No internet connection,Legal,Priya Patel,,N/A,,
+INC00021,2026-05-28 21:13,2026-05-29 15:52,Other,P3 - Medium,Closed,Software recommendation request,Legal,Maria Lopez,18.6,Yes,Provided documentation and guidance. Closed after user confirmation.,4
+INC00022,2026-05-30 20:39,,Email,P2 - High,Open,Spam filter blocking emails,Legal,Yash Somaiya,,N/A,,
+INC00023,2026-05-17 01:25,,VPN,P3 - Medium,In Progress,VPN connection timeout,Marketing,Yash Somaiya,,N/A,,
+INC00024,2026-06-03 04:18,2026-06-03 17:48,Access/Permissions,P2 - High,Closed,Cannot access shared drive,Facilities,Maria Lopez,13.5,No,Reset credentials via Active Directory. Verified MFA enrollment.,5
+INC00025,2026-05-15 17:11,,Email,P3 - Medium,In Progress,Outlook not syncing,HR,Maria Lopez,,N/A,,
+INC00026,2026-05-15 00:10,2026-05-17 07:34,VPN,P3 - Medium,Resolved,VPN client not installing,Legal,Maria Lopez,55.4,No,Updated VPN client. Verified user profile in Azure AD.,4
+INC00027,2026-05-31 22:18,2026-06-02 12:16,Other,P4 - Low,Resolved,Data backup question,Marketing,Jordan Smith,38.0,Yes,Provided documentation and guidance. Closed after user confirmation.,4
+INC00028,2026-06-09 12:48,2026-06-11 15:29,VPN,P3 - Medium,Resolved,VPN client not installing,HR,Maria Lopez,50.7,No,Updated VPN client. Verified user profile in Azure AD.,4
+INC00029,2026-05-31 09:55,,Email,P3 - Medium,In Progress,Email account locked,Legal,Alex Chen,,N/A,,
+INC00030,2026-05-25 17:47,2026-05-27 22:02,Hardware,P3 - Medium,Closed,Laptop not turning on,Facilities,Alex Chen,52.3,No,Dispatched technician. Hardware replaced/repaired.,3
+INC00031,2026-05-30 01:14,2026-05-31 03:39,Hardware,P3 - Medium,Resolved,Laptop not turning on,IT,Alex Chen,26.4,No,Dispatched technician. Hardware replaced/repaired.,5
+INC00032,2026-05-25 19:54,,VPN,P3 - Medium,In Progress,Remote access denied,Facilities,Alex Chen,,N/A,,
+INC00033,2026-05-12 12:58,2026-05-14 19:08,Access/Permissions,P3 - Medium,Resolved,Password reset required,Operations,Yash Somaiya,54.2,No,Reset credentials via Active Directory. Verified MFA enrollment.,3
+INC00034,2026-05-18 17:22,2026-05-25 11:37,Other,P4 - Low,Resolved,General IT inquiry,Marketing,Alex Chen,162.3,No,Provided documentation and guidance. Closed after user confirmation.,4
+INC00035,2026-05-18 20:38,2026-05-20 19:35,Email,P3 - Medium,Resolved,Outlook not syncing,HR,Priya Patel,47.0,No,Reconfigured Outlook profile. Cleared cache.,3
+INC00036,2026-05-29 02:56,2026-05-29 11:17,Access/Permissions,P2 - High,Resolved,Cannot access shared drive,IT,Yash Somaiya,8.4,No,Reset credentials via Active Directory. Verified MFA enrollment.,4
+INC00037,2026-05-11 16:22,2026-05-13 08:45,Email,P3 - Medium,Closed,Outlook not syncing,Facilities,Priya Patel,40.4,No,Reconfigured Outlook profile. Cleared cache.,5
+INC00038,2026-06-04 14:59,,Hardware,P3 - Medium,Pending User,Monitor flickering,HR,Priya Patel,,N/A,,
+INC00039,2026-05-17 20:03,,Network,P2 - High,In Progress,WiFi dropping,IT,Priya Patel,,N/A,,
+INC00040,2026-05-30 18:10,2026-05-31 07:54,Other,P3 - Medium,Closed,Software recommendation request,Marketing,Alex Chen,13.7,Yes,Provided documentation and guidance. Closed after user confirmation.,4
+INC00041,2026-06-10 02:34,2026-06-11 14:01,Access/Permissions,P3 - Medium,Resolved,MFA not working,HR,Jordan Smith,35.4,No,Reset credentials via Active Directory. Verified MFA enrollment.,4
+INC00042,2026-06-09 11:36,2026-06-11 05:47,Access/Permissions,P4 - Low,Closed,MFA not working,Marketing,Jordan Smith,42.2,Yes,Reset credentials via Active Directory. Verified MFA enrollment.,3
+INC00043,2026-05-30 12:57,,VPN,P3 - Medium,Open,VPN client not installing,Finance,Priya Patel,,N/A,,
+INC00044,2026-05-19 07:44,2026-05-21 03:12,Network,P3 - Medium,Resolved,Slow network performance,Finance,Maria Lopez,43.5,No,Reset network adapter. Escalated to network team if persistent.,4
+INC00045,2026-05-18 10:04,2026-05-18 23:22,Printer,P3 - Medium,Resolved,Print job stuck in queue,HR,Maria Lopez,13.3,Yes,Cleared print queue. Reconnected printer via IP address.,4
+INC00046,2026-05-31 08:23,2026-06-01 11:43,VPN,P3 - Medium,Closed,Two-factor auth failure,IT,Jordan Smith,27.3,No,Updated VPN client. Verified user profile in Azure AD.,5
+INC00047,2026-06-05 10:53,2026-06-06 04:44,Network,P3 - Medium,Closed,Slow network performance,IT,Jordan Smith,17.9,Yes,Reset network adapter. Escalated to network team if persistent.,4
+INC00048,2026-06-05 10:09,2026-06-06 12:07,Access/Permissions,P3 - Medium,Closed,Cannot access shared drive,IT,Jordan Smith,26.0,No,Reset credentials via Active Directory. Verified MFA enrollment.,3
+INC00049,2026-05-14 18:46,2026-05-15 01:52,Printer,P2 - High,Resolved,Print job stuck in queue,Marketing,Priya Patel,7.1,Yes,Cleared print queue. Reconnected printer via IP address.,3
+INC00050,2026-05-29 06:19,2026-05-29 18:48,VPN,P3 - Medium,Resolved,VPN connection timeout,Marketing,Jordan Smith,12.5,Yes,Updated VPN client. Verified user profile in Azure AD.,5
