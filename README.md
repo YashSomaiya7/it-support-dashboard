@@ -132,7 +132,7 @@ it-support-dashboard/
 
 ## About Me
 
-**Yash Somaiya** — Cloud Computing & Digital Marketing | Open Work Permit (March 2028)
+**Yash Somaiya** — Cloud Computing & Digital Marketing | Open Work Permit
 
 - Currently: CSR at City of Toronto using ServiceNow, Microsoft 365, ActiveNet daily
 - Former: QA Analyst at Grim Panda Software (JIRA, Agile, iOS/Android testing)
